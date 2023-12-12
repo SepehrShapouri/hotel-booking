@@ -60,23 +60,19 @@ function Header() {
 export default Header;
 
 function GuestOption({ handleOptionChange }) {
+  const { options } = useOptions();
   return (
     <div className="guestOptions">
-      <GuestOptionItem
-        type="adult"
-        minLimit={1}
-        handleOptionChange={handleOptionChange}
-      />
-      <GuestOptionItem
-        type="children"
-        minLimit={0}
-        handleOptionChange={handleOptionChange}
-      />
-      <GuestOptionItem
-        type="room"
-        minLimit={1}
-        handleOptionChange={handleOptionChange}
-      />
+      {Object.keys(options).map((key, index) => {
+        return (
+          <GuestOptionItem
+            key={index}
+            type={key}
+            handleOptionChange={handleOptionChange}
+            minLimit={0}
+          />
+        );
+      })}
     </div>
   );
 }
@@ -89,7 +85,7 @@ function GuestOptionItem({ type, minLimit, handleOptionChange }) {
         <button
           className="optionCounterBtn"
           disabled={options[type] <= minLimit}
-          onClick={()=>handleOptionChange(type,"dec")}
+          onClick={() => handleOptionChange(type, "dec")}
         >
           <HiMinus className="icon" />
         </button>
