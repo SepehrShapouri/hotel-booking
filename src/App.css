@@ -1,42 +1,114 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import '@fontsource/roboto/300.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+
+*{
+  font-family: roboto;
+}
+.header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.headerIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-block;
+}
+.headerSearch{
+  display: flex;
+  width: 100%;
+  max-width: 900px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #ebe9e9;
+  border-radius: 1.5rem;
+  padding: 1rem;
+}
+.headerSearchInput{
+  all: unset;
+  margin-left: 8px;
+  font-size: 14px;
+}
+.headerSearchItems{
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.headerSearchInput::placeholder{
+  font-size: 14px;
+}
+.headerSearchIcon{
+  color: #ef4444;
+}
+.headerSeperator{
+  display: inline-block;
+  width: 1px;
+  height: 30px;
+  background-color: #94a3b8;
+  margin: 0 1rem;
+}
+.headerCalendarIcon{
+  color:#0c4a6e ;
+}
+.dateDropDown{
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+}
+.optionDropDown{
+  font-size: 0.8rem;
+}
+.headerSearchBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0c4a6e;
+  color: #fff;
+  padding: 0.5rem;
+  box-sizing: content-box;
+  border-radius: 1rem;
+}
+.guestOptions {
+  background-color: #fff;
+  box-shadow: 0 0 10px #efefef;
+  border-radius: 1rem;
+  padding: 0.6rem 1rem ;
+  border: 1px solid var(--text-100);
+  position: absolute;
+  top: 2rem;
+  width: 200px;
+  z-index: 1000;
+}
+.guestOptionItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+.guestOptionItem:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.guestOptionItem span,
+.guestOptionItem button {
+  display: inline-block;
+}
+.guestOptionItem .optionCounterBtn {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: var(--text-600);
+  background-color: var(--text-100);
+}
+.optionText {
+  display: inline-block;
+  flex: 1;
+  font-size: 0.9rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.optionCounter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }

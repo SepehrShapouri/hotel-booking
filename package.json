@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/roboto": "^5.0.8",
     "axios": "^1.6.2",
     "date-fns": "^2.30.0",
     "json-server": "^0.17.4",
