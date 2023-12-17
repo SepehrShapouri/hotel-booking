@@ -7,10 +7,17 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
+import {
+  createSearchParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 function Header() {
   const [destination, setDestionation] = useState("");
   const [openOption, setOpenOption] = useState(false);
   const { options, setOptions } = useOptions();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [date, setDate] = useState([
     {
       startDate: new Date(),
@@ -25,6 +32,17 @@ function Header() {
         ...prev,
         [name]: operation === "inc" ? options[name] + 1 : options[name] - 1,
       };
+    });
+  };
+  const handleSearch = () => {
+    const encodedParams = createSearchParams({
+      date: JSON.stringify(date),
+      destination,
+      options: JSON.stringify(options),
+    });
+    navigate({
+      pathname: "/hotels",
+      search: encodedParams.toString(),
     });
   };
   return (
@@ -46,17 +64,19 @@ function Header() {
         <div className="headerSearchItems">
           <HiCalendar className="headerIcon headerCalendarIcon" />
           <div onClick={() => setOpenDate(!openDate)} className="dateDropDown">
-            {`${format(date[0].startDate,"MM/dd/yyyy")} to ${format(date[0].endDate,"MM/dd/yyyy")}`}
+            {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
+              date[0].endDate,
+              "MM/dd/yyyy"
+            )}`}
           </div>
           {openDate && (
             <DateRange
               className="date"
               ranges={date}
-              onChange={(item)=>setDate([item.selection])}
+              onChange={(item) => setDate([item.selection])}
               minDate={new Date()}
               moveRangeOnFirstSelection={true}
               rangeColors={["#0c4a6e"]}
-              
             />
           )}
           <span className="headerSeperator"></span>
@@ -78,7 +98,7 @@ function Header() {
           )}
           <span className="headerSeperator"></span>
         </div>
-        <div className="headerSearchItems">
+        <div className="headerSearchItems" onClick={handleSearch}>
           <HiSearch className="headerIcon headerSearchBtn" />
           <span className="headerSeperator"></span>
         </div>
