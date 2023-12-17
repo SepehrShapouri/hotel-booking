@@ -13,10 +13,12 @@ import {
   useSearchParams,
 } from "react-router-dom";
 function Header() {
-  const [destination, setDestionation] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [destination, setDestionation] = useState(
+    searchParams.get("destination") || ""
+  );
   const [openOption, setOpenOption] = useState(false);
   const { options, setOptions } = useOptions();
-  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const [date, setDate] = useState([
     {

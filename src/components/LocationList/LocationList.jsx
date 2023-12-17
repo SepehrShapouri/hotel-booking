@@ -1,6 +1,7 @@
 import React from "react";
 import useFetch from "../../hooks/useFetch";
 import { CircularProgress } from "@mui/material";
+import ResultDesc from "../ResultDesc/ResultDesc";
 function LocationList() {
   const { data, isLoading } = useFetch("http://localhost:5000/hotels", "");
   if (isLoading)
@@ -18,15 +19,9 @@ function LocationList() {
       <div className="locationList">
         {data.map((item) => {
           return (
-            <div className="locationItem">
+            <div className="locationItem" key={item.id}>
               <img src={item.picture_url.url} alt={item.name} />
-              <div className="locationItemDesc">
-                <p className="location">{item.smart_location}</p>
-                <p className="name">{item.name}</p>
-                <p className="price">
-                  &euro;&nbsp;{item.price}&nbsp;<span>night</span>
-                </p>
-              </div>
+              <ResultDesc className={"locationItemDesc"} item={item}/>
             </div>
           );
         })}

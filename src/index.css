@@ -1,4 +1,5 @@
 :root {
+  -webkit-font-smoothing: antialiased;
   --bg-color: #f3f4f6;
   --text-700: #374151;
   --text-400: #94a3b8;
