@@ -112,3 +112,9 @@
   align-items: center;
   gap: 1rem;
 }
+.date {
+  position: absolute;
+  top: 50px;
+  left: -5rem;
+  z-index: 1002;
+}
