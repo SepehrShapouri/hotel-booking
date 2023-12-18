@@ -8,7 +8,7 @@ import AppLayout from "./components/AppLayout/AppLayout";
 import Hotels from "./components/Hotels/Hotels";
 function App() {
   return (
-    <div>
+    <div className="container">
       <Toaster />
       <Header />
       <Routes>

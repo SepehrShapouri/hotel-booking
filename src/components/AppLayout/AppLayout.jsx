@@ -8,7 +8,7 @@ function AppLayout() {
       <div className="sidebar">
         <Outlet />
       </div>
-      <div className="mapContainer">
+      <div className="mapWrapper">
         <Map />
       </div>
     </div>
