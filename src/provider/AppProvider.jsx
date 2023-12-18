@@ -1,12 +1,13 @@
-import React from 'react'
-import { OptionProvider } from '../context/OptionContext'
+import React from "react";
+import { OptionProvider } from "../context/OptionContext";
+import { HotelProvider } from "../context/HotelsProvider";
 
-function AppProvider({children}) {
+function AppProvider({ children }) {
   return (
-    <OptionProvider>
-        {children}
-    </OptionProvider>
-  )
+    <HotelProvider>
+      <OptionProvider>{children}</OptionProvider>
+    </HotelProvider>
+  );
 }
 
-export default AppProvider
+export default AppProvider;
