@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import AppLayout from "./components/AppLayout/AppLayout";
 import Hotels from "./components/Hotels/Hotels";
 import SingleHotel from "./components/SingleHotel/SingleHotel";
+import Bookmark from "./components/Bookmark/Bookmark";
 function App() {
   return (
     <div className="container">
@@ -18,6 +19,7 @@ function App() {
           <Route index element={<Hotels/>} />
           <Route path=":id" element={<SingleHotel/>} />
         </Route>
+        <Route path="/bookmarks" element={<Bookmark/>}/>
       </Routes>
     </div>
   );
