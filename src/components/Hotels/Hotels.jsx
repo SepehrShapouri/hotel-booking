@@ -7,11 +7,11 @@ import SearchList from "../SearchList/SearchList";
 import { useHotelContext } from "../../context/HotelsProvider";
 
 function Hotels() {
-const {isLoading,data} = useHotelContext()
+const {isLoading,data,currentHotel} = useHotelContext()
   if (isLoading) return <CircularProgress style={{ color: "#0c4a6e" }} />;
   if (!data.length) return <NotFound />;
   return (
-    <SearchList data={data}/>
+    <SearchList data={data} currentHotel={currentHotel}/>
   );
 }
 

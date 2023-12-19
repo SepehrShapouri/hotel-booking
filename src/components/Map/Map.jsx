@@ -23,7 +23,7 @@ function Map() {
     position: geoLocationPosition,
     getPosition,
   } = useGeoLocation();
-  console.log(geoLocationPosition)
+  console.log(geoLocationPosition);
   useEffect(() => {
     if (lat && lng) setMapCenter([lat, lng]);
   }, [lat, lng]);

@@ -6,7 +6,7 @@ function AppLayout() {
   return (
     <div className="appLayout">
       <div className="sidebar">
-        <Outlet />
+        <Outlet/>
       </div>
       <div className="mapWrapper">
         <Map />

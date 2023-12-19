@@ -1,18 +1,17 @@
-@import '@fontsource/roboto/300.css';
-@import '@fontsource/roboto/400.css';
-@import '@fontsource/roboto/500.css';
-@import '@fontsource/roboto/700.css';
+@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
 @import url("https://unpkg.com/leaflet@1.9.4/dist/leaflet.css");
-
-*{
+* {
   font-family: roboto;
 }
-.container{
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.header{
+.header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,7 +23,7 @@
   height: 1.5rem;
   display: inline-block;
 }
-.headerSearch{
+.headerSearch {
   display: flex;
   width: 100%;
   max-width: 1300px;
@@ -35,40 +34,40 @@
   border-radius: 1.5rem;
   padding: 1rem;
 }
-.headerSearchInput{
+.headerSearchInput {
   all: unset;
   margin-left: 8px;
   font-size: 14px;
 }
-.headerSearchItems{
+.headerSearchItems {
   display: flex;
   align-items: center;
   position: relative;
 }
-.headerSearchInput::placeholder{
+.headerSearchInput::placeholder {
   font-size: 14px;
 }
-.headerSearchIcon{
+.headerSearchIcon {
   color: #ef4444;
 }
-.headerSeperator{
+.headerSeperator {
   display: inline-block;
   width: 1px;
   height: 30px;
   background-color: #94a3b8;
   margin: 0 1rem;
 }
-.headerCalendarIcon{
-  color:#0c4a6e ;
+.headerCalendarIcon {
+  color: #0c4a6e;
 }
-.dateDropDown{
+.dateDropDown {
   margin-left: 0.5rem;
   font-size: 0.8rem;
 }
-.optionDropDown{
+.optionDropDown {
   font-size: 0.8rem;
 }
-.headerSearchBtn{
+.headerSearchBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +81,7 @@
   background-color: #fff;
   box-shadow: 0 0 10px #efefef;
   border-radius: 1rem;
-  padding: 0.6rem 1rem ;
+  padding: 0.6rem 1rem;
   border: 1px solid var(--text-100);
   position: absolute;
   top: 2rem;
@@ -125,11 +124,11 @@
   left: -5rem;
   z-index: 1002;
 }
-.progressBar{
-display: flex;
-justify-content: center;
+.progressBar {
+  display: flex;
+  justify-content: center;
 }
-.circularProgressBar{
+.circularProgressBar {
   margin-top: 1.5rem;
 }
 .nearbyLocation {
@@ -183,11 +182,11 @@ justify-content: center;
   justify-content: space-between;
   gap: 1rem;
   max-width: 1280px;
-  margin: 2rem auto;
+  margin: 0 auto;
 }
 
 .roomDetail h2 {
-  margin-bottom: 0.3rem;
+  margin: 0.6rem 0;
   font-size: 1rem;
 }
 .roomDetail > div {
@@ -201,11 +200,12 @@ justify-content: center;
 }
 
 /* map */
-.mapWrapper{
+.mapWrapper {
   width: 50%;
 }
+
 .leaflet-container {
-  width: 100%; 
+  width: 100%;
   height: 100vh;
 }
 .mapContainer {
@@ -213,7 +213,7 @@ justify-content: center;
   background-color: var(--text-100);
   position: relative;
   height: 100%;
-  border-radius:  0 20px 20px 0;
+  border-radius: 0 20px 20px 0;
 }
 .mapContainer button.getLocation {
   padding: 0.3rem 0.5rem;
@@ -270,6 +270,11 @@ justify-content: center;
 }
 
 /* app layout */
+@media screen and (max-width: 500px) {
+  .appLayout {
+    flex-direction: column;
+  }
+}
 .appLayout {
   margin-top: 1rem;
   display: flex;
@@ -279,18 +284,24 @@ justify-content: center;
   width: 100%;
   max-width: 1300px;
 }
-
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
 .sidebar {
-  width: 35%;
+  width: 50vw;
   overflow-y: scroll;
   padding-right: 1rem;
 }
 
 .searchItem.current-hotel {
-  border: 3px solid var(--primary-700);
-  border-radius: 1rem;
+  /* border-bottom: 3px solid #0c4a6e; */
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  border-radius: 20px;
 }
-
+.searchList a:hover{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  border-radius: 20px;
+}
 @media screen and (min-width: 768px) {
   .sidebar {
     width: 50%;
@@ -396,6 +407,8 @@ a.active {
   width: 1.1rem;
   height: 1.1rem;
 }
-.marker{
-  background-color: red;
+.roomAvailabilities {
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
 }
