@@ -10,6 +10,7 @@ import {
 } from "react-icons/md";
 import { useHotelContext } from "../../context/HotelsProvider";
 import RoomAvailablities from "../RoomAvailablities/RoomAvailablities";
+import Loader from "../Loader/Loader";
 
 function SingleHotel() {
   const { id } = useParams();
@@ -21,7 +22,7 @@ function SingleHotel() {
   useEffect(() => {
     getHotel(id);
   }, [id]);
-  if (isLoading) return <CircularProgress style={{ color: "#0c4a6e" }} />;
+  if (isLoading) return <Loader/>;
   return (
     <div className="room">
       <div className="roomDetail">

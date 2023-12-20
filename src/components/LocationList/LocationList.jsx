@@ -3,15 +3,13 @@ import useFetch from "../../hooks/useFetch";
 import { CircularProgress } from "@mui/material";
 import ResultDesc from "../ResultDesc/ResultDesc";
 import { Link } from "react-router-dom";
+import Loader from "../Loader/Loader";
 function LocationList() {
   const { data, isLoading } = useFetch("http://localhost:5000/hotels", "");
   if (isLoading)
     return (
       <div className="progressBar">
-        <CircularProgress
-          style={{ color: "#0c4a6e" }}
-          className="circularProgressBar"
-        />
+        <Loader className="circularProgressBar"/>
       </div>
     );
   return (
