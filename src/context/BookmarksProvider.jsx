@@ -7,29 +7,59 @@ const BookmarkContext = createContext();
 
 export function BookmarkProvider({ children }) {
   const [currentBookmark, setCurrentBookmark] = useState({});
-  const [isLoadingCurrentBookmark, setIsLoadingCurrentBookmark] =
-    useState(false);
-  const { data: bookmarks, isLoading } = useFetch(`${BASE_URL}/bookmarks`);
-  async function getBookmark(id) {
-    setIsLoadingCurrentBookmark(true);
-    setCurrentBookmark(null)
+  const [isLoading, setIsLoading] = useState(false);
+  const [bookmarks, setBookmarks] = useState([]);
+  // const { data: bookmarks,  } = useFetch(`${BASE_URL}/bookmarks`);
+  useEffect(() => {
+    async function getBookmark() {
+      setIsLoading(true);
+      try {
+        const { data } = await axios.get(`${BASE_URL}/bookmarks`);
+        setBookmarks(data);
+        setIsLoading(false);
+        console.log(data);
+      } catch (error) {
+        toast.error(error.message);
+        setIsLoading(false);
+      }
+    }
+    getBookmark();
+  }, []);
+
+  async function getCurrentBookmark(id) {
+    setIsLoading(true);
+    setCurrentBookmark(null);
     try {
       const { data } = await axios.get(`${BASE_URL}/bookmarks/${id}`);
       setCurrentBookmark(data);
-      setIsLoadingCurrentBookmark(false);
+      setIsLoading(false);
     } catch (error) {
       toast.error(error.message);
-      setIsLoadingCurrentBookmark(false);
+      setIsLoading(false);
+    }
+  }
+  async function createBookmark(newBookmark) {
+    setIsLoading(true);
+    try {
+      const { data } = await axios.post(`${BASE_URL}/bookmarks/`,newBookmark);
+      setBookmarks((prev) => [...prev, data]);
+      setCurrentBookmark(data)
+      console.log(data)
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
     }
   }
   return (
     <BookmarkContext.Provider
       value={{
         currentBookmark,
-        isLoadingCurrentBookmark,
-        getBookmark,
+        isLoading,
+        getCurrentBookmark,
         isLoading,
         bookmarks,
+        createBookmark
       }}
     >
       {children}

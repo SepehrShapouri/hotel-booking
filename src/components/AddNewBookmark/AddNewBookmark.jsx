@@ -5,13 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import Loader from "../Loader/Loader";
 import ReactCountryFlag from "react-country-flag";
-// function getFlagEmoji(countryCode) {
-//     const codePoints = countryCode
-//       .toUpperCase()
-//       .split('')
-//       .map(char =>  127397 + char.charCodeAt());
-//     return String.fromCodePoint(...codePoints);
-//   }
+import { useBookmark } from "../../context/BookmarksProvider";
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 function AddNewBookmark() {
   const navigate = useNavigate();
@@ -20,6 +14,7 @@ function AddNewBookmark() {
   const [country, setCountry] = useState("");
   const [countryCode, setCountryCode] = useState();
   const [isLoadingGeoCoding, setIsLoadingGeoCoding] = useState(false);
+  const {createBookmark} = useBookmark()
   useEffect(() => {
     async function getLocation() {
       setIsLoadingGeoCoding(true);
@@ -42,6 +37,21 @@ function AddNewBookmark() {
     }
     getLocation();
   }, [lat, lng]);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!cityName || !country) return;
+
+const newBookmark = {
+    cityName,
+    country,
+    countryCode,
+    latitude: lat,
+    longitude: lng,
+    host_location: cityName + " " + country,
+};
+   await createBookmark(newBookmark)
+   navigate("/bookmarks")
+  };
   if (isLoadingGeoCoding) return <Loader />;
   return (
     <div>
@@ -66,7 +76,14 @@ function AddNewBookmark() {
             value={country}
             onChange={(e) => setCountry(e.target.value)}
           />
-          <span className="flag"><ReactCountryFlag className="flag" style={{marginTop:"2px"}} svg countryCode={countryCode}/></span>
+          <span className="flag">
+            <ReactCountryFlag
+              className="flag"
+              style={{ marginTop: "2px" }}
+              svg
+              countryCode={countryCode}
+            />
+          </span>
         </div>
         <div className="buttons">
           <button
@@ -78,7 +95,7 @@ function AddNewBookmark() {
           >
             &larr;back
           </button>
-          <button className="btn btn--primary">add</button>
+          <button className="btn btn--primary" onClick={(e)=>handleSubmit(e)}>add</button>
         </div>
       </form>
     </div>
