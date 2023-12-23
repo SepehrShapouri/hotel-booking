@@ -25,7 +25,25 @@ export function BookmarkProvider({ children }) {
     }
     getBookmark();
   }, []);
-
+  async function deleteBookmark(bookmarkId) {
+    setIsLoading(true);
+    setCurrentBookmark(null);
+    try {
+      const { data } = await axios.delete(
+        `${BASE_URL}/bookmarks/${bookmarkId}`
+      );
+      const newBookmarks = bookmarks.filter((b) => {
+        return b.id != bookmarkId;
+      });
+      setBookmarks(newBookmarks);
+      setCurrentBookmark({});
+      setIsLoading(false);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
   async function getCurrentBookmark(id) {
     setIsLoading(true);
     setCurrentBookmark(null);
@@ -41,10 +59,10 @@ export function BookmarkProvider({ children }) {
   async function createBookmark(newBookmark) {
     setIsLoading(true);
     try {
-      const { data } = await axios.post(`${BASE_URL}/bookmarks/`,newBookmark);
+      const { data } = await axios.post(`${BASE_URL}/bookmarks/`, newBookmark);
       setBookmarks((prev) => [...prev, data]);
-      setCurrentBookmark(data)
-      console.log(data)
+      setCurrentBookmark(data);
+      console.log(data);
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -59,7 +77,8 @@ export function BookmarkProvider({ children }) {
         getCurrentBookmark,
         isLoading,
         bookmarks,
-        createBookmark
+        createBookmark,
+        deleteBookmark,
       }}
     >
       {children}
