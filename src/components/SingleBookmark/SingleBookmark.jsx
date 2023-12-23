@@ -19,8 +19,8 @@ function SingleBookmark() {
     getCurrentBookmark(id);
   }, [id]);
   const navigate = useNavigate();
-  const deleteBookmarkHandler=()=>{
-    deleteBookmark(data.id)
+  const deleteBookmarkHandler= async ()=>{
+     await deleteBookmark(data.id)
     navigate("/bookmarks")
   }
   if (isLoading) return <Loader />;
