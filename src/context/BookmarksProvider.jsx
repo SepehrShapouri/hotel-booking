@@ -1,72 +1,111 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import useFetch from "../hooks/useFetch";
 import toast from "react-hot-toast";
 import axios from "axios";
 const BASE_URL = "http://localhost:5000";
 const BookmarkContext = createContext();
-
+const initialState = {
+  bookmarks: [],
+  isLoading: false,
+  currentBookmark: [],
+  error: null,
+};
+function bookmarksReducer(state, action) {
+  switch (action.type) {
+    case "loading":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "bookmarks/loaded":
+      return {
+        ...state,
+        bookmarks: action.payload,
+        isLoading: false,
+      };
+    case "bookmark/loaded":
+      return {
+        ...state,
+        currentBookmark: action.payload,
+        isLoading: false,
+      };
+    case "bookmark/created":
+      return {
+        ...state,
+        bookmarks: [...state.bookmarks, action.payload],
+        currentBookmark: action.payload,
+        isLoading: false,
+      };
+    case "bookmark/deleted":
+      return {
+        ...state,
+        bookmarks: [...state.bookmarks.filter((b) => b.id != action.payload)],
+        currentBookmark: [],
+        isLoading: false,
+      };
+    case "rejected":
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
+      };
+  }
+}
 export function BookmarkProvider({ children }) {
-  const [currentBookmark, setCurrentBookmark] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [bookmarks, setBookmarks] = useState([]);
-  // const { data: bookmarks,  } = useFetch(`${BASE_URL}/bookmarks`);
+  const [{ bookmarks, isLoading, currentBookmark }, dispatch] = useReducer(
+    bookmarksReducer,
+    initialState
+  );
   useEffect(() => {
     async function getBookmark() {
-      setIsLoading(true);
+      dispatch({ type: "loading" });
       try {
         const { data } = await axios.get(`${BASE_URL}/bookmarks`);
-        setBookmarks(data);
-        setIsLoading(false);
-        console.log(data);
+        dispatch({ type: "bookmarks/loaded", payload: data });
       } catch (error) {
         toast.error(error.message);
-        setIsLoading(false);
+        dispatch({ type: "rejected", payload: error });
       }
     }
     getBookmark();
   }, []);
   async function deleteBookmark(bookmarkId) {
-    setIsLoading(true);
-    setCurrentBookmark(null);
+    dispatch({ type: "loading" });
     try {
       const { data } = await axios.delete(
         `${BASE_URL}/bookmarks/${bookmarkId}`
       );
-      const newBookmarks = bookmarks.filter((b) => {
-        return b.id != bookmarkId;
-      });
-      setBookmarks(newBookmarks);
-      setCurrentBookmark({});
-      setIsLoading(false);
+      dispatch({ type: "bookmark/deleted", payload: bookmarkId });
     } catch (error) {
       toast.error(error.message);
-    } finally {
-      setIsLoading(false);
+      dispatch({ type: "rejected", payload: error });
     }
   }
   async function getCurrentBookmark(id) {
-    setIsLoading(true);
-    setCurrentBookmark(null);
+    if (Number(id) === currentBookmark?.id) return;
+    dispatch({ type: "loading" });
     try {
       const { data } = await axios.get(`${BASE_URL}/bookmarks/${id}`);
-      setCurrentBookmark(data);
-      setIsLoading(false);
+      dispatch({ type: "bookmark/loaded", payload: data });
     } catch (error) {
       toast.error(error.message);
-      setIsLoading(false);
+      dispatch({ type: "rejected", payload: error });
     }
   }
   async function createBookmark(newBookmark) {
-    setIsLoading(true);
+    dispatch({ type: "loading" });
     try {
       const { data } = await axios.post(`${BASE_URL}/bookmarks/`, newBookmark);
-      setBookmarks((prev) => [...prev, data]);
-      setCurrentBookmark(data);
-      console.log(data);
+      dispatch({ type: "bookmark/created", payload: data });
     } catch (error) {
       toast.error(error.message);
-    } finally {
-      setIsLoading(false);
+      dispatch({ type: "rejected", payload: error });
     }
   }
   return (
