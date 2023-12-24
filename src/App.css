@@ -27,7 +27,7 @@
   display: flex;
   width: 100%;
   max-width: 1300px;
-  justify-content: space-between;
+  justify-content:space-between;
   align-items: center;
   gap: 1rem;
   border: 1px solid #ebe9e9;
@@ -390,7 +390,7 @@ a.active {
 
 .loginContainer {
   margin: 2rem auto;
-  max-width: 25rem;
+  width: 300px;
   border: 1px solid var(--text-300);
   padding: 1rem;
   border-radius: 1rem;
@@ -435,4 +435,7 @@ a.active {
 .delete-btn {
 color: #ef4444;
 font-size: 1.5rem;
+}
+.bookmarkIcon,.homeIcon,.userIcon{
+  color: #0c4a6e;
 }

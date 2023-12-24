@@ -13,6 +13,9 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
+import { IoMdHome } from "react-icons/io";
+import { BsBookmarkStarFill } from "react-icons/bs";
+import { FaRegUser } from "react-icons/fa"
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [destination, setDestionation] = useState(
@@ -51,6 +54,12 @@ function Header() {
   return (
     <div className="header">
       <div className="headerSearch">
+        <div className="headerSearchItems">
+          <Link to="/">
+            <IoMdHome className="headerIcon homeIcon" />
+          </Link>
+          <span className="headerSeperator"></span>
+        </div>
         <div className="headerSearchItems">
           <MdLocationOn className="headerIcon headerSearchIcon" />
           <input
@@ -103,6 +112,18 @@ function Header() {
         </div>
         <div className="headerSearchItems" onClick={handleSearch}>
           <HiSearch className="headerIcon headerSearchBtn" />
+          <span className="headerSeperator"></span>
+        </div>
+        <div className="headerSearchItems">
+          <Link to="/bookmarks">
+            <BsBookmarkStarFill className="headerIcon bookmarkIcon" />
+          </Link>
+          <span className="headerSeperator"></span>
+        </div>
+        <div className="headerSearchItems">
+          <Link to="/login">
+            <FaRegUser className="headerIcon userIcon" />
+          </Link>
           <span className="headerSeperator"></span>
         </div>
       </div>

@@ -3,7 +3,7 @@ import useFetch from "../hooks/useFetch";
 import { useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
-const BASE_URL = "http://localhost:5000/hotels";
+const BASE_URL = "http://localhost:5001/hotels";
 const HotelContext = createContext();
 const initialState = {
   currentHotel: {},
