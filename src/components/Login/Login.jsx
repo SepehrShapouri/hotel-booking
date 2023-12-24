@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdLogin } from "react-icons/md"
+import { useAuth } from "../../context/AuthContext";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 function Login() {
-  const [email, setEmail] = useStatge("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const {login,isAuthenticated} = useAuth()
+  const navigate = useNavigate()
   const handleLoginSubmit = (e)=>{
     e.preventDefault()
-    console.log(email,password)
+    if(email == " "|| password == "") toast.error("please fill in all fields")
+    login(email,password)
   }
+  useEffect(()=>{
+    if(isAuthenticated){
+        navigate("/",{replace:true})
+    }
+  },[isAuthenticated,navigate])
   return (
     <div className="loginContainer">
       <h2>Login</h2>

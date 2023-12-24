@@ -15,7 +15,9 @@ import {
 } from "react-router-dom";
 import { IoMdHome } from "react-icons/io";
 import { BsBookmarkStarFill } from "react-icons/bs";
-import { FaRegUser } from "react-icons/fa"
+import { FaRegUser } from "react-icons/fa";
+import { useAuth } from "../../context/AuthContext";
+import { CiLogout } from "react-icons/ci"
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [destination, setDestionation] = useState(
@@ -121,9 +123,7 @@ function Header() {
           <span className="headerSeperator"></span>
         </div>
         <div className="headerSearchItems">
-          <Link to="/login">
-            <FaRegUser className="headerIcon userIcon" />
-          </Link>
+          <User/>
           <span className="headerSeperator"></span>
         </div>
       </div>
@@ -176,3 +176,23 @@ function GuestOptionItem({ type, minLimit, handleOptionChange }) {
     </div>
   );
 }
+function User() {
+  const { isAuthenticated, user, logout } = useAuth();
+  const navigate = useNavigate()
+  const handleLogout = ()=>{
+    logout()
+    navigate("/")
+  }
+  return (
+    <div>
+      {isAuthenticated ? (
+        <span className="userLogout">{user.name}<CiLogout className="headerIcon userIcon" onClick={(e)=>handleLogout()}/> </span>
+      ) : (
+        <Link to="/login">
+          <FaRegUser className="headerIcon userIcon" />
+        </Link>
+      )}
+    </div>
+  );
+}
+
