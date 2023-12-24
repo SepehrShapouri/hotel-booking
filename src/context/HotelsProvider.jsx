@@ -1,14 +1,40 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import { useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
 const BASE_URL = "http://localhost:5000/hotels";
 const HotelContext = createContext();
+const initialState = {
+  currentHotel: {},
+  isLoadingCurrentHotel: false,
+};
+function hotelReducer(state, action) {
+  switch (action.type) {
+    case "loading":
+      return {
+        ...state,
+        isLoadingCurrentHotel: true,
+      };
+    case "hotel/loaded":
+      return {
+        ...state,
+        currentHotel: action.payload,
+        isLoadingCurrentHotel: false,
+      };
+    case "rejected":
+      return {
+        ...state,
+        isLoadingCurrentHotel: false,
+      };
+  }
+}
 export function HotelProvider({ children }) {
+  const [{ currentHotel, isLoadingCurrentHotel }, dispatch] = useReducer(
+    hotelReducer,
+    initialState
+  );
   const [searchParams, setSearchParams] = useSearchParams();
-  const [currentHotel, setCurrentHotel] = useState({});
-  const [isLoadingCurrentHotel, setIsLoadingCurrentHotel] = useState(false);
   const destination = searchParams.get("destination");
   const room = JSON.parse(searchParams.get("options"))?.room;
   const { isLoading, data } = useFetch(
@@ -16,14 +42,13 @@ export function HotelProvider({ children }) {
     `q=${destination || ""}&accommodates_gte=${room || 1}`
   );
   async function getHotel(id) {
-    setIsLoadingCurrentHotel(true);
+    dispatch({ type: "loading" });
     try {
       const { data } = await axios.get(`${BASE_URL}/${id}`);
-      setCurrentHotel(data);
-      setIsLoadingCurrentHotel(false);
+      dispatch({ type: "hotel/loaded", payload: data });
     } catch (error) {
       toast.error(error.message);
-      setIsLoadingCurrentHotel(false);
+      dispatch({ type: "rejected" });
     }
   }
   return (
