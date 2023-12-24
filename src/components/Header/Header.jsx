@@ -181,12 +181,12 @@ function User() {
   const navigate = useNavigate()
   const handleLogout = ()=>{
     logout()
-    navigate("/")
+    navigate("/login")
   }
   return (
     <div>
       {isAuthenticated ? (
-        <span className="userLogout">{user.name}<CiLogout className="headerIcon userIcon" onClick={(e)=>handleLogout()}/> </span>
+        <span className="userLogout">{user.name}<CiLogout className="headerIcon logout-icon" onClick={(e)=>handleLogout()}/> </span>
       ) : (
         <Link to="/login">
           <FaRegUser className="headerIcon userIcon" />
