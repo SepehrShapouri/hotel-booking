@@ -1325,13 +1325,49 @@
   ],
   "bookmarks": [
     {
-      "cityName": "Madrid",
-      "country": "Spain",
-      "countryCode": "ES",
-      "latitude": "40.43383744310581",
-      "longitude": "-3.6904199983970747",
-      "host_location": "Madrid Spain",
+      "cityName": "Arnstein",
+      "country": "Germany",
+      "countryCode": "DE",
+      "latitude": "50.0086215988794",
+      "longitude": "10.002193450927736",
+      "host_location": "Arnstein Germany",
+      "id": 1
+    },
+    {
+      "cityName": "Arnstein",
+      "country": "Germany",
+      "countryCode": "DE",
+      "latitude": "50.01645382384902",
+      "longitude": "10.008544921875002",
+      "host_location": "Arnstein Germany",
       "id": 2
+    },
+    {
+      "cityName": "Amsterdam",
+      "country": "Netherlands (Kingdom of the)",
+      "countryCode": "NL",
+      "latitude": "52.4793463364174",
+      "longitude": "4.965476989746095",
+      "host_location": "Amsterdam Netherlands (Kingdom of the)",
+      "id": 3
+    },
+    {
+      "cityName": "Poppenhausen",
+      "country": "Germany",
+      "countryCode": "DE",
+      "latitude": "50.10033353170142",
+      "longitude": "10.15617370605469",
+      "host_location": "Poppenhausen Germany",
+      "id": 5
+    },
+    {
+      "cityName": "Uchtelhausen",
+      "country": "Germany",
+      "countryCode": "DE",
+      "latitude": "50.10429472638314",
+      "longitude": "10.24131774902344",
+      "host_location": "Uchtelhausen Germany",
+      "id": 6
     }
   ]
 }

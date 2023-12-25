@@ -5,6 +5,7 @@
 @import url("https://unpkg.com/leaflet@1.9.4/dist/leaflet.css");
 * {
   font-family: roboto;
+  /* overflow-x: hidden; */
 }
 .container {
   display: flex;
@@ -19,29 +20,30 @@
   width: 100%;
 }
 .headerIcon {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
   display: inline-block;
 }
 .headerSearch {
   display: flex;
   width: 100%;
   max-width: 1300px;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  /* gap: 1rem; */
   border: 1px solid #ebe9e9;
   border-radius: 1.5rem;
   padding: 1rem;
 }
 .headerSearchInput {
   all: unset;
-  margin-left: 8px;
+  /* margin-left: 8px; */
   font-size: 14px;
 }
 .headerSearchItems {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: relative;
 }
 .headerSearchInput::placeholder {
@@ -51,11 +53,17 @@
   color: #ef4444;
 }
 .headerSeperator {
-  display: inline-block;
+  /* display: inline-block;
   width: 1px;
   height: 30px;
   background-color: #94a3b8;
-  margin: 0 1rem;
+  margin: 0 1.3rem; */
+  display: none;
+}
+@media screen and (max-width: 620px) {
+  .headerSeperator {
+    margin: 0;
+  }
 }
 .headerCalendarIcon {
   color: #0c4a6e;
@@ -68,15 +76,9 @@
   font-size: 0.8rem;
 }
 .headerSearchBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #0c4a6e;
-  color: #fff;
-  padding: 0.5rem;
-  box-sizing: content-box;
-  border-radius: 1rem;
+  color: #0c4a6e;
 }
+
 .guestOptions {
   background-color: #fff;
   box-shadow: 0 0 10px #efefef;
@@ -145,7 +147,8 @@
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
 }
-
+@media screen and (max-width: 500px) {
+}
 .locationItem img {
   width: 100%;
   height: 20rem;
@@ -433,18 +436,146 @@ a.active {
   justify-content: space-between;
 }
 .delete-btn {
-color: #ef4444;
-font-size: 1.5rem;
+  color: #ef4444;
+  font-size: 1.5rem;
 }
-.bookmarkIcon,.homeIcon,.userIcon{
+.bookmarkIcon,
+.homeIcon,
+.userIcon {
   color: #0c4a6e;
 }
-.userLogout{
+.userLogout {
   width: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.logout-icon{
+.logout-icon {
   color: #ef4444;
+}
+/* responsiveness */
+@media screen and (max-width: 620px) {
+  .headerSearch {
+    height: 80px;
+  }
+  .headerSearchItems {
+    display: flex;
+    justify-content: space-between;
+    width: 14%;
+    align-items: center;
+  }
+  .headerSeperator {
+    display: none;
+  }
+  .dateDropDown {
+    display: none;
+  }
+  .optionDropDownDetails {
+    display: none;
+  }
+  .userName {
+    display: none;
+  }
+  .headerSearchInput {
+    display: none;
+  }
+  .openSearchInput {
+    position: relative;
+    right: 20px;
+  }
+  .openSearchInput::placeholder {
+    font-size: 0.7rem;
+  }
+  .headerSearchItems:last-of-type {
+    margin-right: -1rem;
+  }
+  .mapWrapper {
+    width: 100%;
+    height: 50%;
+    border-radius: 10px;
+  }
+  .mapContainer{
+    border-radius: 20px;
+  }
+  .appLayout {
+    display: flex;
+    flex-direction: column;
+    /* width: 100vw;
+    padding: 1rem;
+    align-items: center; */
+  }
+  .sidebar {
+    width: 100%;
+    height: 50%;
+    padding: 0.2rem;
+    display: flex;
+    border-radius:  10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-bottom: 10px;
+  }
+  .room {
+height: 100%;
+justify-content: center;
+  }
+  .leaflet-container{
+    border-radius: 20px;
+  }
+  .currentBookmark{
+    box-shadow: none;
+  }
+  .roomDetail{
+    width: 100%;
+  }
+  .roomDetail img{
+    height: 70%;
+    max-width: 610px;
+    margin: 0;
+  }
+  .sidebar div,div form{
+width: 100%;
+  }
+  .sidebar div{
+padding: 0.45rem;
+  }
+  .sidebar div .bookmarkList{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar div .bookmarkList a .bookmarkItem{
+    height: 50px;
+    border-color: #ebe9e9;
+    border-radius: 10px; 
+    padding: 0 1rem;
+  }
+  .singleBookmark div{
+display: flex;
+flex-direction: column;
+align-items: center;
+  }
+ /* .sidebar span{
+  position: relative;
+  top: 43%;
+  left: 43%;
+} */
+
+}
+.openSearchInput {
+  display: block;
+}
+.openInput {
+}
+.optionDropDown {
+  display: flex;
+  align-items: center;
+}
+.optionsIcon {
+  margin-right: 1rem;
+  color: #0c4a6e;
+  font-size: 1.2rem;
+}
+canvas {
+
+}
+.container :first-child{
 }

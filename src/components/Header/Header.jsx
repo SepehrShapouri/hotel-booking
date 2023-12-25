@@ -17,7 +17,8 @@ import { IoMdHome } from "react-icons/io";
 import { BsBookmarkStarFill } from "react-icons/bs";
 import { FaRegUser } from "react-icons/fa";
 import { useAuth } from "../../context/AuthContext";
-import { CiLogout } from "react-icons/ci"
+import { CiLogout } from "react-icons/ci";
+import { IoIosOptions } from "react-icons/io";
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [destination, setDestionation] = useState(
@@ -34,6 +35,7 @@ function Header() {
     },
   ]);
   const [openDate, setOpenDate] = useState(false);
+  const [openInput,setOpenInput] = useState(false)
   const handleOptionChange = (name, operation) => {
     setOptions((prev) => {
       return {
@@ -42,6 +44,7 @@ function Header() {
       };
     });
   };
+
   const handleSearch = () => {
     const encodedParams = createSearchParams({
       date: JSON.stringify(date),
@@ -63,21 +66,25 @@ function Header() {
           <span className="headerSeperator"></span>
         </div>
         <div className="headerSearchItems">
-          <MdLocationOn className="headerIcon headerSearchIcon" />
+          <MdLocationOn className={`headerIcon headerSearchIcon ${openInput ? "inputOpen" : ""}`} onClick={()=>setOpenInput(prev=>!prev)}/>
           <input
             type="text"
             value={destination}
             onChange={(e) => setDestionation(e.target.value)}
+            // onClick={(e=>setOpenInput(prev=>!prev))}
             placeholder="where to go?"
             name="destination"
             id="destination"
-            className="headerSearchInput"
+            className={`headerSearchInput ${openInput ? "openSearchInput" : ""}`}
           />
           <span className="headerSeperator"></span>
         </div>
         <div className="headerSearchItems">
-          <HiCalendar className="headerIcon headerCalendarIcon" />
-          <div onClick={() => setOpenDate(!openDate)} className="dateDropDown">
+          <HiCalendar
+            className="headerIcon headerCalendarIcon"
+            onClick={() => setOpenDate(!openDate)}
+          />
+          <div className="dateDropDown">
             {`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
               date[0].endDate,
               "MM/dd/yyyy"
@@ -101,8 +108,11 @@ function Header() {
             id="optionDropDown"
             onClick={() => setOpenOption(!openOption)}
           >
-            {options.adult} adult &bull; {options.children} children &bull;{" "}
-            {options.room} room
+            <IoIosOptions className="headerIcon optionsIcon" />
+            <div className="optionDropDownDetails">
+              {options.adult} adult &bull; {options.children} children &bull;
+              {options.room} room
+            </div>
           </div>
           {openOption && (
             <GuestOption
@@ -112,8 +122,8 @@ function Header() {
           )}
           <span className="headerSeperator"></span>
         </div>
-        <div className="headerSearchItems" onClick={handleSearch}>
-          <HiSearch className="headerIcon headerSearchBtn" />
+        <div className="headerSearchItems">
+          <HiSearch className="headerIcon headerSearchBtn" onClick={handleSearch}/>
           <span className="headerSeperator"></span>
         </div>
         <div className="headerSearchItems">
@@ -123,7 +133,7 @@ function Header() {
           <span className="headerSeperator"></span>
         </div>
         <div className="headerSearchItems">
-          <User/>
+          <User />
           <span className="headerSeperator"></span>
         </div>
       </div>
@@ -178,15 +188,21 @@ function GuestOptionItem({ type, minLimit, handleOptionChange }) {
 }
 function User() {
   const { isAuthenticated, user, logout } = useAuth();
-  const navigate = useNavigate()
-  const handleLogout = ()=>{
-    logout()
-    navigate("/login")
-  }
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
   return (
     <div>
       {isAuthenticated ? (
-        <span className="userLogout">{user.name}<CiLogout className="headerIcon logout-icon" onClick={(e)=>handleLogout()}/> </span>
+        <span className="userLogout">
+          <p className="userName">{user.name}</p>
+          <CiLogout
+            className="headerIcon logout-icon"
+            onClick={(e) => handleLogout()}
+          />{" "}
+        </span>
       ) : (
         <Link to="/login">
           <FaRegUser className="headerIcon userIcon" />
@@ -195,4 +211,3 @@ function User() {
     </div>
   );
 }
-

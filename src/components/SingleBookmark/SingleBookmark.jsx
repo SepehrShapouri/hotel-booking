@@ -46,9 +46,9 @@ function SingleBookmark() {
         />{" "}
         geographical coordinates :
       </p>
-      <span className="singleBookmarkDetail">
+      <div className="singleBookmarkDetail">
         {data.latitude} &bull; {data.longitude}
-      </span>
+      </div>
       </div>
       <button className="delete-btn" onClick={()=>deleteBookmarkHandler()}><FaTrash/></button>
       <button className="back-btn" onClick={() => navigate(-1)}>
