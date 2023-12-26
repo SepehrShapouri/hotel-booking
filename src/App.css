@@ -553,12 +553,9 @@ display: flex;
 flex-direction: column;
 align-items: center;
   }
- /* .sidebar span{
-  position: relative;
-  top: 43%;
-  left: 43%;
-} */
-
+  .userLogout{
+    width: 100%;
+  }
 }
 .openSearchInput {
   display: block;
@@ -574,8 +571,8 @@ align-items: center;
   color: #0c4a6e;
   font-size: 1.2rem;
 }
-canvas {
-
-}
+canvas{
+  display: none;
+  }
 .container :first-child{
 }

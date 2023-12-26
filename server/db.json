@@ -1343,15 +1343,6 @@
       "id": 2
     },
     {
-      "cityName": "Amsterdam",
-      "country": "Netherlands (Kingdom of the)",
-      "countryCode": "NL",
-      "latitude": "52.4793463364174",
-      "longitude": "4.965476989746095",
-      "host_location": "Amsterdam Netherlands (Kingdom of the)",
-      "id": 3
-    },
-    {
       "cityName": "Poppenhausen",
       "country": "Germany",
       "countryCode": "DE",
@@ -1361,12 +1352,12 @@
       "id": 5
     },
     {
-      "cityName": "Uchtelhausen",
-      "country": "Germany",
-      "countryCode": "DE",
-      "latitude": "50.10429472638314",
-      "longitude": "10.24131774902344",
-      "host_location": "Uchtelhausen Germany",
+      "cityName": "Karaj",
+      "country": "Iran (Islamic Republic of)",
+      "countryCode": "IR",
+      "latitude": "35.8788675718202",
+      "longitude": "51.00179672241212",
+      "host_location": "Karaj Iran (Islamic Republic of)",
       "id": 6
     }
   ]

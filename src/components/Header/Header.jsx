@@ -146,7 +146,7 @@ export default Header;
 function GuestOption({ handleOptionChange, setOpenOption }) {
   const { options } = useOptions();
   const openRef = useRef(null);
-  useOutsideClick(openRef, "optionDropDown", () => setOpenOption(false));
+  // useOutsideClick(openRef, "optionDropDown", () => setOpenOption(false));
   return (
     <div className="guestOptions" ref={openRef}>
       {Object.keys(options).map((key, index) => {

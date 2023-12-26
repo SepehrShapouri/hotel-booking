@@ -16,7 +16,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 function App() {
   return (
     <div className="container">
-      <Toaster />
+      <Toaster/>
       <Header />
       <Routes>
         <Route path="/" element={<LocationList />} />
