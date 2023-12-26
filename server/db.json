@@ -1359,6 +1359,15 @@
       "longitude": "51.00179672241212",
       "host_location": "Karaj Iran (Islamic Republic of)",
       "id": 6
+ server    },
+    {
+      "cityName": "Arnstein",
+      "country": "Germany",
+      "countryCode": "DE",
+      "latitude": "49.982137021190255",
+      "longitude": "9.999746942594294",
+      "host_location": "Arnstein Germany",
+      "id": 7
     }
   ]
 }

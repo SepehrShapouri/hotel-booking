@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MdLocationOn } from "react-icons/md";
 import { HiCalendar, HiMinus, HiPlus, HiSearch } from "react-icons/hi";
 import { useOptions } from "../../context/OptionContext";
@@ -19,6 +19,7 @@ import { FaRegUser } from "react-icons/fa";
 import { useAuth } from "../../context/AuthContext";
 import { CiLogout } from "react-icons/ci";
 import { IoIosOptions } from "react-icons/io";
+import axios from "axios";
 function Header() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [destination, setDestionation] = useState(

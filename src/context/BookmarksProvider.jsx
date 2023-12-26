@@ -8,7 +8,7 @@ import {
 import useFetch from "../hooks/useFetch";
 import toast from "react-hot-toast";
 import axios from "axios";
-const BASE_URL = "http://localhost:5001";
+const BASE_URL = "https://hotel-json-server.vercel.app";
 const BookmarkContext = createContext();
 const initialState = {
   bookmarks: [],

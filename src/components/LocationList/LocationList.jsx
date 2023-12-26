@@ -5,7 +5,7 @@ import ResultDesc from "../ResultDesc/ResultDesc";
 import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 function LocationList() {
-  const { data, isLoading } = useFetch("http://localhost:5001/hotels", "");
+  const { data, isLoading } = useFetch("https://hotel-json-server.vercel.app/hotels", "");
   if (isLoading)
     return (
       <div className="progressBar">

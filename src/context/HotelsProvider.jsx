@@ -3,7 +3,7 @@ import useFetch from "../hooks/useFetch";
 import { useSearchParams } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
-const BASE_URL = "http://localhost:5001/hotels";
+const BASE_URL = "https://hotel-json-server.vercel.app/hotels";
 const HotelContext = createContext();
 const initialState = {
   currentHotel: {},
@@ -41,10 +41,12 @@ export function HotelProvider({ children }) {
     BASE_URL,
     `q=${destination || ""}&accommodates_gte=${room || 1}`
   );
+console.log(data);
   async function getHotel(id) {
     dispatch({ type: "loading" });
     try {
       const { data } = await axios.get(`${BASE_URL}/${id}`);
+      console.log(data);
       dispatch({ type: "hotel/loaded", payload: data });
     } catch (error) {
       toast.error(error.message);

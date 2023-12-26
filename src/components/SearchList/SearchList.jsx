@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ResultDesc from '../ResultDesc/ResultDesc';
 
 function SearchList({data,currentHotel}) {
+  console.log(currentHotel)
   return (
     <div className="searchList">
     <h3>Search Result : {data.length}</h3>
