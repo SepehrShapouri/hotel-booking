@@ -40,7 +40,7 @@ function AddNewBookmark() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!cityName || !country) return;
-
+const test = "this is a test"
 const newBookmark = {
     cityName,
     country,
