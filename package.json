@@ -8,8 +8,7 @@
     "build": "vite build",
     "server": "json-server --watch server/db.json --port 5001 --delay 500",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "preinstall": "node dist/setup.js"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
